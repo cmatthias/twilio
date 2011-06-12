@@ -18,4 +18,11 @@ describe 'Account' do
     Twilio::Account.update_name('Bubba').should == response
     WebMock.should have_requested(:put, twilio_url).with(:body => {:FriendlyName => 'Bubba'})
   end
+
+  it "creates a subaccount" do
+    response, url = stub_post(:account, 'Accounts')
+    
+    Twilio::Account.create('FooBarBaz').should == response
+    WebMock.should have_requested(:post, url)
+  end
 end

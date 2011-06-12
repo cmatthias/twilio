@@ -4,6 +4,10 @@ module Twilio
     def get
       Twilio.get('')
     end
+
+    def create(name)
+      Twilio.post("/Accounts", :body => {:FriendlyName => name})
+    end
     
     def update_name(name)
       Twilio.put('', :body => {:FriendlyName => name}) 
